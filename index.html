@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Check Password Strength</title>
+</head>
+<body>
+    <div class="input-box">
+        <input type="password" placeholder="password" id="password">
+        <button id="submitBtn">Submit</button>
+        <p id="message">Password strength: </p>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById("password");
+        const message = document.getElementById("message");
+        const submitBtn = document.getElementById("submitBtn");
+
+        // Function to evaluate password strength
+        function evaluatePasswordStrength(password) {
+            let strength = "";
+            let detailedMessage = "";
+
+            if (password.length > 6 && /[A-Z]/.test(password) && /\d/.test(password)) {
+                strength = "strong";
+                detailedMessage = "Your password is strong! Great job!";
+                passwordInput.style.borderColor = "green";
+                message.style.color = "green";
+            } else if (password.length >= 4) {
+                strength = "medium";
+                detailedMessage = "Your password is medium. Consider adding more characters and a mix of upper-case letters and numbers.";
+                passwordInput.style.borderColor = "yellow";
+                message.style.color = "yellow";
+            } else if (password.length > 0) {
+                strength = "weak";
+                detailedMessage = "Your password is weak. Please add more characters.";
+                passwordInput.style.borderColor = "red";
+                message.style.color = "red";
+            } else {
+                strength = "";
+                detailedMessage = "";
+                passwordInput.style.borderColor = "";
+                message.style.color = "";
+            }
+
+            return { strength, detailedMessage };
+        }
+
+        // Evaluate strength on input
+        passwordInput.addEventListener("input", () => {
+            const password = passwordInput.value;
+            const { strength, detailedMessage } = evaluatePasswordStrength(password);
+            message.textContent = `Password strength: ${strength}. ${detailedMessage}`;
+        });
+
+        // Handle button click to show password strength
+        submitBtn.addEventListener("click", () => {
+            const password = passwordInput.value;
+            const { strength, detailedMessage } = evaluatePasswordStrength(password);
+            if (strength) {
+                alert(`Password strength: ${strength}. ${detailedMessage}`);
+            } else {
+                alert("Please enter a password.");
+            }
+        });
+    </script>
+</body>
+</html>

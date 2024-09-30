@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    margin: 0;
+}
+
+.input-box {
+    
+    width: 300px;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 12px 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="password"]:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+div.input-box button{
+  margin: -30px 344px;
+  margin-bottom: auto;
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+}
+div.input-box p{
+    display: none;
+}
